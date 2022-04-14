@@ -1,0 +1,7 @@
+.container{
+    gap:10px;
+}
+.container .content-container{
+    height: 80vh;
+    border: solid red 1px;
+}
