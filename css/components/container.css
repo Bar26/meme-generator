@@ -1,7 +1,6 @@
 .container{
-    gap:10px;
+    /* gap:10px; */
 }
 .container .content-container{
-    height: 80vh;
-    border: solid red 1px;
+    flex-grow: 1;
 }

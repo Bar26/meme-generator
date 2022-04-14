@@ -12,11 +12,21 @@ function onInit(){
     renderGallery()
     gElGalleryContainer.style.display="block"
     gElCnvasContainer.style.display="none"
-    // renderMeme()
+    renderKeyWords()
+    toggleWords()
+    
 }
 
-function onOpenGallery(){
-    gElGalleryContainer.style.display="block"
-    // gElGallery.style.display="block"
-    gElCnvasContainer.style.display="none"
+function toggleWords(){
+    const elBaby=document.querySelector('.baby')
+    const elAnimal=document.querySelector('.animal')
+    const elPolitical=document.querySelector('.political')
+    elBaby.classList.toggle('none')
+    elAnimal.classList.toggle('none')
+    elPolitical.classList.toggle('none')
 }
+
+function toggleMenu(){
+    document.body.classList.toggle('menu-open')
+}
+

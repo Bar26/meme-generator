@@ -8,20 +8,34 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body onload="onInit()">
+    <div class="main-screen" onclick="toggleMenu()"></div>
     <div class="container flex column">
         <header class="main-header flex space-between">
-            <h1 class="logo">MEME GENERATOR</h1>
+            <h1 class="logo">MEMEGENE</h1>
             <section class="tools flex space-between">
                 <button class="btn my-meme">MY MEME</button>
                 <button class="btn gallery" onclick="onOpenGallery()">GALLERY</button>
                 <button class="btn about">ABOUT</button>
             </section>
+            <button class="btn btn-menu" onclick="toggleMenu()">☰</button>
         </header>
        
-        <main class="content-container main-layout"> 
-            <div class="gallery-container">
+        <main class="content-container"> 
+            <div class="gallery-container flex ">
+                <section class="secondary-header flex space-between">
+                    <form onsubmit="onUpdatFilter( event)">
+                    <label for="search-key" >
+                        <input  type="search" name="search-key" placeholder="Enter search keyword" id="search-key">
+                        <img src="img/search-icon.jpg">
+                    </label></form>
+                    <ul class="key-words clean-list flex">
+                    </ul>
+          
+
+                </section>
                 <div class="grid-container grid" > </div>
             </div>
+
             <div class="canvas-container flex" > 
                 <canvas id="canvas" height="400" width="500" >
                     <button class="check">check</button>
@@ -34,8 +48,9 @@
             </div>
         </main>
         
-        <footer class="main-footer">
-
+        <footer class="main-footer flex">
+            <h4 class="logo">memegene</h4>
+            <p>all rights reserved 2022</p>
         </footer>
     </div>
 

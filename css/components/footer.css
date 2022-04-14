@@ -1,0 +1,18 @@
+.container .main-footer{
+    height: 100px;
+    border: 1px solid blue;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color1);
+}
+
+.main-footer .logo{
+    color: white;
+    font-family:monsterrat-alter-thin;
+} 
+
+.main-footer p{
+    font-family:monsterrat-thin;
+    color: white;
+}
