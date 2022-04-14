@@ -1,0 +1,11 @@
+.container .grid-container{
+    grid-template-columns:repeat(auto-fill,minmax(200px,1fr)) ;
+    gap:20px;
+    height: 100%;
+    padding: 20px;
+}
+
+
+.container .content-container #canvas{
+    border: 1px solid green;
+}

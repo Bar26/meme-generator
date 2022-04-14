@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body onload="onInit()">
+    <div class="container flex column">
+        <header class="main-header flex space-between">
+            <h1 class="logo">MEME GENERATOR</h1>
+            <section class="tools flex space-between">
+                <button class="btn my-meme">MY MEME</button>
+                <button class="btn gallery" onclick="onOpenGallery()">GALLERY</button>
+                <button class="btn about">ABOUT</button>
+            </section>
+        </header>
+       
+        <main class="content-container main-layout"> 
+            <div class="gallery-container">
+                <div class="grid-container grid" > </div>
+            </div>
+            <div class="canvas-container flex" > 
+                <canvas id="canvas" height="400" width="500" >
+                    <button class="check">check</button>
+                </canvas>
+                <input type="text" name="user-text" placeholder="insert your text here" onkeydown="onSetText(this.value)"></input>
+                <input type="color" name="user-color" onchange="onSetTextColor(this.value)"></input>
+                <button class="size" onclick="onSetTextSize(5)">+</button>
+                <button class="size" onclick="onSetTextSize(-5)">-</button>
+                <button class="switch" onclick="onSwitchLine()">⇅</button>
+            </div>
+        </main>
+        
+        <footer class="main-footer">
+
+        </footer>
+    </div>
+
+
+
+
+
+
+
+
+    <script src="js/meme-service.js"></script>
+    <script src="js/meme-controller.js"></script>
+    <script src="js/gallery-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
