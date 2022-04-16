@@ -1,59 +1,56 @@
 'use strict'
 
 var gElEditor = document.querySelector('.content-container')
-var gElCnvasContainer = gElEditor.querySelector('.canvas-container')
-var gElCanvas = gElCnvasContainer.querySelector('#canvas')
+var gElCanvasContainer = gElEditor.querySelector('.edit-container')
+var gElCanvas = gElCanvasContainer.querySelector('#canvas')
+var gelMyMeme = document.querySelector('.my-meme-container')
 var gCtx = gElCanvas.getContext('2d')
+var gElModal = document.querySelector('.modal')
+var gElShare = document.querySelector('.share-container')
 var gCurrLineIdx = 0
-
-
 
 function renderMeme() {
     gElGalleryContainer.style.display = "none"
-    gElCnvasContainer.style.display = "block"
+    gElCanvasContainer.style.display = "flex"
     const meme = getMeme()
     const imgId = meme.selectedImgId
-    const text1 = meme.lines[0].txt
-    const text2 = meme.lines[1].txt
-    const pos1 = meme.lines[0].pos
-    const pos2 = meme.lines[1].pos
-    const lines = meme.lines
     var img = new Image()
     img.src = `img/${imgId}.jpg`
-    var elBtn = gElCanvas.querySelector('.check')
+    resizeCanvas(img.width, img.height)
+
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        // drawRect(50, 10)
+        gMeme.lines.forEach((line, idx) => {
+            let pos = line.pos
+            let txt = line.txt
+            drawText(txt, pos.x, pos.y, idx)
 
-        drawText(text1, pos1.x, pos1.y)
-        drawText(text2, pos2.x, pos2.y)
-        // drawButton(elBtn, 20, 20)
+        })
     }
-
 }
 
-function drawText(txt = 'your text here', x, y) {
-    // gCtx.beginPath()
-    // gCtx.fillStyle = "blue"
-    // gCtx.rect(0, 50, 400, 70)
+function drawText(txt, x, y, idx) {
 
-    // gCtx.fill()
-    // gCtx = gElCanvas.getContext('2d')
-    gCtx.textAlign = gMeme.lines[gCurrLineIdx].align;
-    gCtx.textBaseline = 'middle';
+    gCtx.beginPath()
+    gCtx.textAlign = gMeme.lines[gCurrLineIdx].align
+    gCtx.textBaseline = 'middle'
     gCtx.lineWidth = 1;
-    gCtx.font = gMeme.lines[gCurrLineIdx].size + 'px david';
-    gCtx.fillStyle = gMeme.lines[gCurrLineIdx].color;
+    gCtx.font = gMeme.lines[gCurrLineIdx].size + 'px impact'
+    const textToMesure = gCtx.measureText(txt)
+    const w = textToMesure.width
+    if (gCurrLineIdx === idx) {
+        gCtx.rect(x - w / 2 - 10, y - 27, w + 20, 54)
+        gCtx.strokeStyle = 'rgba(252, 252, 252, 0.871)'
+        gCtx.stroke()
+        gCtx.fillStyle = 'rgba(211, 211, 211, 0.671)'
+        gCtx.fill()
+    }
+    gCtx.fillStyle = gMeme.lines[gCurrLineIdx].color
+    gCtx.strokeStyle = 'black'
+    gCtx.lineWidth = '4'
+    gCtx.strokeText(txt, x, y)
     gCtx.fillText(txt, x, y)
-
 }
-
-function drawRect(x, y) {
-    gCtx.rect(x, y, 400, 100);
-    gCtx.strokeStyle = 'black';
-    gCtx.stroke();
-}
-
 
 function onSetText(txt) {
     gMeme.lines[gCurrLineIdx].txt = txt
@@ -71,11 +68,111 @@ function onSetTextSize(diff) {
     renderMeme()
 }
 
-function drawButton(x, y) {
-
-}
 
 function onSwitchLine() {
-    gCurrLineIdx += 1
+    gCurrLineIdx++
     if (gCurrLineIdx === gMeme.lines.length) gCurrLineIdx = 0
+    renderMeme()
 }
+
+function onDownloadCanvas(elLink) {
+    const data = gElCanvas.toDataURL()
+    elLink.href = data
+    elLink.download = 'your-canvas'
+}
+
+
+function onSaveCanvas() {
+    const imageData = gElCanvas.toDataURL("image/png")
+    saveCanvas(imageData)
+    _openModal()
+    renderMemes()
+}
+
+function renderMemes() {
+    const memes = getMemes()
+    let strHtml = ``
+    memes.forEach(meme => strHtml += `<div><img src="${meme}"></div>`)
+    gelMyMeme.innerHTML = strHtml
+}
+
+
+function onOpenMyMeme() {
+    gElGalleryContainer.style.display = "none"
+    gElCanvasContainer.style.display = "none"
+    gElAbout.style.display="none"
+    gelMyMeme.style.display = "block"
+    _openModal()
+    onCloseModal()
+    myMemeActive()
+}
+
+function _openModal() {
+    gElModal.style.visibility = "visible"
+    gElModal.classList.add('open')
+    document.body.classList.add('modal-open')
+}
+
+function onCloseModal() {
+    gElModal.style.visibility = "hidden"
+    gElModal.classList.remove('open')
+    document.body.classList.remove('modal-open')
+}
+
+function onShare() {
+    _openShare()
+    uploadCanvas()
+}
+function _openShare() {
+    gElShare.style.visibility = "visible"
+    gElShare.classList.add('open')
+    document.body.classList.add('share-open')
+}
+
+function onCloseShare() {
+    gElShare.style.visibility = "hidden"
+    gElShare.classList.remove('open')
+    document.body.classList.remove('share-open')
+}
+
+function onAlignText(alignTo) {
+    alignText(alignTo)
+    renderMeme()
+}
+
+function onAddLine(str) {
+    addLine(str)
+    renderMeme()
+}
+
+function onClearCanvas() {
+    clearLines()
+    renderMeme()
+}
+
+function resizeCanvas(width, height) {
+    const ratio = width / height
+    gElCanvas.width = gElCanvas.height * ratio
+}
+
+
+function renderImojis() {
+    const imojis = getImojisForDisplay()
+    let strHtml = ``
+    strHtml += `<div class="page-idx" onclick="onSeqPageChange(-1)">&laquo;</div>`
+    imojis.forEach(imoji => strHtml += `<div onclick="onAddLine('${imoji}')">${imoji}</div>`)
+    strHtml += `<div class="page-idx" onclick="onSeqPageChange(1)">&raquo;</div>`
+    document.querySelector('.imojis').innerHTML = strHtml
+}
+
+function onSeqPageChange(diff) {
+    seqPageChanege(diff)
+    const page = getPageIdx()
+    if (page < 0) return
+    renderImojis()
+}
+
+
+
+
+

@@ -6,6 +6,18 @@
     align-items: center;
 }
 
+.main-header .tools{
+    height: 100%;
+    align-items: stretch;
+}
+
+
+.main-header .tools>*.active{
+    color: var(--color2);
+    box-shadow: inset 0px -6px 0 var(--color2);
+}
+
+
 .main-header .logo{
     font-size: 1.5em;
     color: white;

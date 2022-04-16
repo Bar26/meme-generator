@@ -12,3 +12,9 @@ body.menu-open .main-screen {
     pointer-events: auto;
     opacity: 1;
 }
+
+body.share-open .main-screen {
+    pointer-events: auto;
+    opacity: 1;
+}
+

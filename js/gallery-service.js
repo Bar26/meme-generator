@@ -1,31 +1,7 @@
 'use strict'
 var gFilterBy = ''
 
-var gKeyWords = [{ name: 'funny', clicks: 0, size: 16 },
-{ name: 'famous', clicks: 0, size: 16 },
-{ name: 'cute', clicks: 0, size: 16 },
-{ name: 'movie', clicks: 0, size: 16 },
-{ name: 'happy', clicks: 0, size: 16 },
-{ name: 'baby', clicks: 0, size: 16 },
-{ name: 'animal', clicks: 0, size: 16 },
-{ name: 'political', clicks: 0, size: 16 }
-]
-
-// <ul class="key-words clean-list flex">
-// <li onclick="onEnlarge(this)">Funny</li>
-// <li onclick="onEnlarge(this)">Famous</li>
-// <li onclick="onEnlarge(this)">Cute</li>
-// <li onclick="onEnlarge(this)">Movie</li>
-// <li onclick="onEnlarge(this)">Happy</li>
-// <li class="more" onclick="onDisplayMore(this)">more...</li>
-// <li onclick="onEnlarge(this)" class="hid none">Baby</li>
-// <li onclick="onEnlarge(this)" class="hid none">Animal</li>
-// <li onclick="onEnlarge(this)" class="hid none">Political</li>
-// </ul>
-
-
-
-
+var gKeyWords=[]
 
 var gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['happy'] },
@@ -81,13 +57,23 @@ function getKeyWordsMap() {
 }
 
 function getKeyWords() {
+    const keyWords=loadFromStorage('keyWordsDB')
+    gKeyWords=keyWords? keyWords : [{ name: 'funny', clicks: 0, size: 16 },
+    { name: 'famous', clicks: 0, size: 16 },
+    { name: 'cute', clicks: 0, size: 16 },
+    { name: 'movie', clicks: 0, size: 16 },
+    { name: 'happy', clicks: 0, size: 16 },
+    { name: 'baby', clicks: 0, size: 16 },
+    { name: 'animal', clicks: 0, size: 16 },
+    { name: 'political', clicks: 0, size: 16 }
+    ]
     return gKeyWords
 }
-
 
 function enlarge(word) {
     word.clicks += 1
     word.size += 5
+    saveToStorage('keyWordsDB',gKeyWords)
 }
 
 function updateFilter(filterBy) {

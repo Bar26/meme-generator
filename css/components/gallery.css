@@ -1,6 +1,7 @@
 .container .gallery-container{
     background-color: var(--color3);
     height: 100%;
+    flex-direction: column;
 }
 
 .gallery-container .secondary-header{
@@ -53,7 +54,7 @@
     gap:20px;
     flex-grow: 1;
     padding: 20px;
-    overflow-y: scroll;
+    height: 100%;
 }
 
 

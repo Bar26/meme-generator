@@ -13,14 +13,34 @@
         <header class="main-header flex space-between">
             <h1 class="logo">MEMEGENE</h1>
             <section class="tools flex space-between">
-                <button class="btn my-meme">MY MEME</button>
+                <button class="btn my-meme" onclick="onOpenMyMeme()">MY MEME</button>
                 <button class="btn gallery" onclick="onOpenGallery()">GALLERY</button>
-                <button class="btn about">ABOUT</button>
+                <button class="btn about" onclick="onOpenAbout()">ABOUT</button>
             </section>
             <button class="btn btn-menu" onclick="toggleMenu()">☰</button>
         </header>
        
         <main class="content-container"> 
+            <div class="about-container flex">
+                <div><h2>Instant, online meme generation</h2>
+                    <p>Your meme is generated for you all within your browser while visting our site online. Using our site means no waiting for uploads, no fussing with slow connection speeds, and absolutely nothing for you to install. As soon as you're happy with your meme, just save the image to your device or computer. It's really that easy.</p>
+                </div>
+                <div>
+                    <h2>No sign ups! Totally free</h2>
+                    <p>Using this site is free, requires no sign-ups, and we won't watermark your memes and images.</p>
+                </div>
+                <div>
+                    <h2>everything you can do with our memeGene</h2>
+                    <p><ul>
+                        <li>download our memes for free</li>
+                        <li>edit our memes and make them your own</li>
+                        <li>save all your memes</li>
+                        <li>share your memes with your friends</li>
+                        <li>find out what our most searched catagories and search category by keyWords</li>
+                    </ul></p>
+                </div>
+
+            </div>
             <div class="gallery-container flex ">
                 <section class="secondary-header flex space-between">
                     <form onsubmit="onUpdatFilter( event)">
@@ -36,18 +56,48 @@
                 <div class="grid-container grid" > </div>
             </div>
 
-            <div class="canvas-container flex" > 
-                <canvas id="canvas" height="400" width="500" >
-                    <button class="check">check</button>
+            <div class="edit-container flex " > 
+               <canvas id="canvas" height="400" width="500"  >
+                 
                 </canvas>
-                <input type="text" name="user-text" placeholder="insert your text here" onkeydown="onSetText(this.value)"></input>
-                <input type="color" name="user-color" onchange="onSetTextColor(this.value)"></input>
-                <button class="size" onclick="onSetTextSize(5)">+</button>
-                <button class="size" onclick="onSetTextSize(-5)">-</button>
-                <button class="switch" onclick="onSwitchLine()">⇅</button>
+                <section class="editors grid">
+                    <div class="user-text"><input class="user-text" type="text" name="user-text" placeholder="insert your text here" onkeydown="onSetText(this.value)"></input></div>
+                    <div class="user-color"><input class="user-color" type="color" name="user-color" onchange="onSetTextColor(this.value)"></input></div>
+                    <div class="switch"><img class="switch" onclick="onSwitchLine()" src="img/arrows_down_up.png"></div>
+                    <div class="align-center" onclick="onAlignText('center')"><img class="align-center" src="img/text_align_justify_icon.png"></div>
+                    <div class="align-left" onclick="onAlignText('right')"><img class="align-left" src="img/text_align_left_icon.png"></div>
+                    <div class="align-right" onclick="onAlignText('left')"><img class="align-right" src="img/text_align_right_icon.png"></div>
+                    <div class="plus" onclick="onAddLine()"><img class="plus" src="img/Plus_icon.png"></div>
+                    <div class="size-plus"><img class="size-plus" onclick="onSetTextSize(5)" src="img/text-size-plus.png"></div>
+                    <div class="size-minus"><img class="size-minus" onclick="onSetTextSize(-5)" src="img/text-size-minus.png"></div>
+                    <div class="bin" onclick="onClearCanvas()"><img class="bin" src="img/trash_bin_icon.png"></div>
+                    <div class="btn save"><button class="btn save" onclick="onSaveCanvas()">SAVE</button></div>
+                    <div class="btn download"><a href="#" onclick="onDownloadCanvas(this)" download="">DOWNLOAD</a></div>
+                    <div class="btn share"><button class="btn share" onclick="onShare()">SHARE</button></div>
+                    <div class="imojis flex">
+                    </div>
+                </section>
+            </div>
+
+            <div class="my-meme-container grid">
+            
             </div>
         </main>
-        
+         
+        <div class="modal flex">
+            <div class="modal-left"></div>
+            <h2>want to see your meme's? check out <span onclick="onOpenMyMeme()">MY MEME</span></h2>
+            <button class="btn close" onclick="onCloseModal()">X</button>
+        </div>
+   
+        <div class="share-container">
+            <div class="left flex">
+                <button class="btn share">Share</button>
+                <button class="btn close" onclick="onCloseShare()">Close</button>
+            </div>
+            
+        </div>
+
         <footer class="main-footer flex">
             <h4 class="logo">memegene</h4>
             <p>all rights reserved 2022</p>
@@ -59,12 +109,13 @@
 
 
 
-
-
+    <script src="js/storage-service.js"></script>
+    <script src="js/upload-service.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/meme-controller.js"></script>
     <script src="js/gallery-service.js"></script>
     <script src="js/gallery-controller.js"></script>
+    <script src="js/about.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

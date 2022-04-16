@@ -5,6 +5,7 @@ var gElGalleryContainer = gElEditor.querySelector('.gallery-container')
 var gElGallery = gElGalleryContainer.querySelector('.grid-container')
 
 function renderGallery() {
+    galleryActive()
     const imgs = getImgs()
     let strHtmls = ``
     imgs.forEach(img => {
@@ -17,9 +18,12 @@ function renderGallery() {
 
 function onOpenGallery() {
     gElGalleryContainer.style.display = "block"
-    gElCnvasContainer.style.display = "none"
+    gElCanvasContainer.style.display = "none"
+    gelMyMeme.style.display = "none"
+    gElAbout.style.display="none"
     gFilterBy = ''
     renderGallery()
+    galleryActive()
 }
 
 function onImgSelect(elImg) {

@@ -1,4 +1,138 @@
-.container .content-container #canvas{
-    border: 1px solid green;
+.container .content-container .edit-container {
+    padding: 20px;
+    min-height: calc(100vh - 160px);
+    gap: 50px;
+    background-color: var(--color3);
+    justify-content: center;
+    align-items: center;
 }
 
+.container .content-container .edit-container #canvas {}
+
+.container .content-container .edit-container .editors {
+    min-height: 400px;
+    grid-template-rows: repeat(4, 1fr) 1.5fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 15px;
+    justify-items: center;
+    align-items: center;
+}
+
+/* .container .content-container .edit-container .editors>*{
+    align-self: center;
+} */
+
+.container .content-container .edit-container .editors .user-text {
+    width: 100%;
+    grid-column: 1/-1;
+    align-self: stretch;
+
+}
+
+.container .content-container .edit-container .editors input.user-text {
+    border: none;
+    border-radius: 0.5em;
+    padding: 10px;
+}
+
+
+.container .content-container .edit-container .editors .switch {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+.container .content-container .edit-container .editors .plus {
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+.container .content-container .edit-container .editors .bin {
+    grid-column: 3/3;
+    grid-row: 2/3;
+}
+
+.container .content-container .edit-container .editors .size-plus {
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+
+.container .content-container .edit-container .editors .size-minus {
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+
+.container .content-container .edit-container .editors .align-left {
+    grid-column: 1/2;
+    grid-row: 4/5;
+}
+
+
+.container .content-container .edit-container .editors .imojis {
+    width: 100%;
+    min-height: 70px;
+    background-color: white;
+    border-radius: 0.5em;
+    grid-column: 1/-1;
+    grid-row: 5/6;
+    justify-content: space-around;
+    align-items: center
+}
+
+.container .content-container .edit-container .editors .imojis>* {
+    cursor: pointer;
+    font-size: x-large;
+}
+
+.container .content-container .edit-container .editors .imojis .page-idx {
+    font-size: xx-large;
+}
+
+
+
+
+.container .content-container .edit-container .editors img {
+    max-width: 35px;
+    cursor: pointer;
+}
+
+.container .content-container .edit-container .editors input.user-color {
+    border: none;
+    background-image: linear-gradient(315deg, #fce043 0%, #fb7b81 74%);
+    cursor: pointer;
+}
+
+
+
+.container .content-container .edit-container .editors button.btn {
+   
+    background-color: var(--color1);
+    border-radius: 0.75em;
+    padding: 0.75em;
+}
+
+.container .content-container .edit-container .editors .download {
+    background-color: var(--color1);
+    border-radius: 0.75em;
+    padding: 0.38rem;
+ 
+
+}
+
+.container .content-container .edit-container .editors .download a:hover {
+    color: var(--color2);
+}
+
+
+.container .content-container .edit-container .editors .btn:hover {
+    color: var(--color2);
+}
+
+
+.container .content-container .edit-container .editors .save,
+.download {
+    margin-inline-end: 5px;
+}
+
+.container .content-container .edit-container .editors .btn {
+    align-self: end;
+}

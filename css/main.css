@@ -14,10 +14,11 @@
 @import url(../css/components/editor.css);
 @import url(../css/components/footer.css);
 @import url(../css/components/screen.css);
+@import url(../css/components/my-meme.css);
+@import url(../css/components/about.css);
 
 /* MEDIA QUERY */
 @import url(../css/mq/mq.css);
-
 
 
 
