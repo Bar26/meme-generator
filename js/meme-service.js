@@ -108,6 +108,7 @@ function saveCanvas(dataUrl) {
 }
 
 function getMemes() {
-    gMemes = loadFromStorage('memesDB')
+    var memes = loadFromStorage('memesDB')
+    if (memes) gMemes = memes
     return gMemes
 }
